@@ -1,12 +1,8 @@
 package com.example.sudokubs.Controllers;
 
-import com.example.sudokubs.Applications.SudokuApplication;
-import com.example.sudokubs.Utils.Paths;
+import com.example.sudokubs.Model.SudokuBoard;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 public class SudokuController {
@@ -16,11 +12,15 @@ public class SudokuController {
     @FXML private Button btnAyuda;
     @FXML private Label lblMensaje;
 
-    private TextField[][] celdas = new TextField[6][6];
+    private final TextField[][] celdas = new TextField[6][6];
+
+    private final SudokuBoard board = new SudokuBoard();
 
     @FXML
     public void initialize() {
         buildGrid();
+        board.generateBoard();
+        updateView();
     }
 
     private void buildGrid() {
@@ -31,7 +31,6 @@ public class SudokuController {
                 celda.setPrefWidth(70);
                 celda.setPrefHeight(70);
 
-                // Solo acepta un número del 1 al 6
                 celda.setTextFormatter(new TextFormatter<>(change -> {
                     String newText = change.getControlNewText();
                     if (newText.matches("[1-6]?")) {
@@ -48,6 +47,26 @@ public class SudokuController {
         }
     }
 
+    private void updateView() {
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 6; col++) {
+                TextField celda = celdas[row][col];
+                int value = board.getValue(row, col);
+
+                // Limpiar estilos y texto previos
+                celda.getStyleClass().removeAll("celda-fija", "celda-error");
+                celda.setText(""); // <- agrega esta línea
+                celda.setEditable(true); // <- y esta
+
+                if (board.isFixed(row, col)) {
+                    celda.setText(String.valueOf(value));
+                    celda.setEditable(false);
+                    celda.getStyleClass().add("celda-fija");
+                }
+            }
+        }
+    }
+
     private String getCellBorderStyle(int row, int col) {
         String top    = "1px";
         String right  = (col == 2) ? "3px" : "1px";
@@ -58,8 +77,18 @@ public class SudokuController {
 
     @FXML
     private void handleNuevoJuego() {
-        lblMensaje.setText("");
-        // TODO: HU-2 lógica de generación del tablero
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Nuevo Juego");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Deseas iniciar un nuevo juego?");
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                lblMensaje.setText("");
+                board.generateBoard();
+                updateView();
+            }
+        });
     }
 
     @FXML

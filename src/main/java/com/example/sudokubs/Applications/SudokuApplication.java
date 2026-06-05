@@ -21,8 +21,7 @@ public class SudokuApplication extends Application {
     }
 
     public static void setScene(String path) {
-        var url = SudokuApplication.class.getResource(path);
-        FXMLLoader loader = new FXMLLoader(url);
+        FXMLLoader loader = new FXMLLoader(SudokuApplication.class.getResource(path));
         try {
             AnchorPane pane = loader.load();
             stageWindow.setScene(new Scene(pane));

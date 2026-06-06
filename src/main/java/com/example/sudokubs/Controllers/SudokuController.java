@@ -60,6 +60,8 @@ public class SudokuController {
                             lblMensaje.setText("");
                             if (validator.isBoardComplete()) {
                                 lblMensaje.setText("¡Felicidades! ¡Completaste el Sudoku!");
+                                lblMensaje.setStyle("-fx-text-fill: lightgreen; -fx-font-size: 18px; -fx-font-weight: bold;");
+                                btnAyuda.setDisable(true);
                             }
                         }
                     } else {
@@ -81,10 +83,9 @@ public class SudokuController {
                 TextField celda = celdas[row][col];
                 int value = board.getValue(row, col);
 
-                // Limpiar estilos y texto previos
                 celda.getStyleClass().removeAll("celda-fija", "celda-error");
-                celda.setText(""); // <- agrega esta línea
-                celda.setEditable(true); // <- y esta
+                celda.setText("");
+                celda.setEditable(true);
 
                 if (board.isFixed(row, col)) {
                     celda.setText(String.valueOf(value));
@@ -93,6 +94,8 @@ public class SudokuController {
                 }
             }
         }
+        lblMensaje.setText("");
+        lblMensaje.setStyle("");
     }
 
     private String getCellBorderStyle(int row, int col) {
@@ -115,6 +118,7 @@ public class SudokuController {
                 lblMensaje.setText("");
                 board.generateBoard();
                 updateView();
+                btnAyuda.setDisable(false);
             }
         });
     }
@@ -131,6 +135,7 @@ public class SudokuController {
 
         if (hint == null) {
             lblMensaje.setText("No hay sugerencias disponibles.");
+            btnAyuda.setDisable(true);
             return;
         }
 

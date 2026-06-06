@@ -8,10 +8,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * Clase principal de la aplicación Sudoku.
+ * Gestiona la ventana principal y el cambio de escenas.
+ */
 public class SudokuApplication extends Application {
 
+    /** Ventana principal de la aplicación. */
     private static Stage stageWindow;
 
+    /**
+     * Inicializa y muestra la ventana principal de la aplicación.
+     *
+     * @param stage escenario principal proporcionado por JavaFX
+     */
     @Override
     public void start(Stage stage) {
         stageWindow = stage;
@@ -20,9 +30,14 @@ public class SudokuApplication extends Application {
         setScene(Paths.INICIO);
     }
 
+    /**
+     * Cambia la escena actual de la ventana principal.
+     *
+     * @param path ruta del archivo FXML a cargar
+     * @throws RuntimeException si no se puede cargar la vista
+     */
     public static void setScene(String path) {
-        var url = SudokuApplication.class.getResource(path);
-        FXMLLoader loader = new FXMLLoader(url);
+        FXMLLoader loader = new FXMLLoader(SudokuApplication.class.getResource(path));
         try {
             AnchorPane pane = loader.load();
             stageWindow.setScene(new Scene(pane));

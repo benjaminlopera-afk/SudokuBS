@@ -11,7 +11,7 @@
     -fx-font-weight: bold;
 }
 
-/* ── "6 × 6" ── */
+/* ── Subtítulo ── */
 .subtitle-label {
     -fx-text-fill: #ffffff;
     -fx-font-size: 36px;
@@ -25,7 +25,9 @@
     -fx-alignment: center;
 }
 
-/* ── Botón principal ── */
+/* ════════════════ BOTONES ════════════════ */
+
+/* ── Botón principal (Jugar / Nuevo Juego) ── */
 .btn-primary {
     -fx-background-color: #e94560;
     -fx-text-fill: #ffffff;
@@ -38,6 +40,22 @@
 .btn-primary:hover {
     -fx-background-color: #c73652;
 }
+
+/* ── Botón secundario (Ayuda) ── */
+.btn-secondary {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30px;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #1a4a8a;
+}
+
+/* ════════════════ CELDAS ════════════════ */
 
 /* ── Celda normal ── */
 .celda {
@@ -71,29 +89,17 @@
     -fx-text-fill: #ff6b6b;
 }
 
-/* ── Botón secundario (Ayuda) ── */
-.btn-secondary {
-    -fx-background-color: #0f3460;
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 30px;
-    -fx-cursor: hand;
-}
-
-.btn-secondary:hover {
-    -fx-background-color: #1a4a8a;
-}
-
-/* ── Mensaje de error/info ── */
-.msg-label {
-    -fx-text-fill: #e94560;
-    -fx-font-size: 18px;
-}
-
 /* ── Celda con sugerencia de ayuda ── */
 .text-field.celda-hint {
     -fx-background-color: #1a4a2e;
     -fx-border-color: #4caf50;
     -fx-text-fill: #4caf50;
+}
+
+/* ════════════════ MENSAJES ════════════════ */
+
+/* ── Etiqueta de mensajes al jugador ── */
+.msg-label {
+    -fx-text-fill: #e94560;
+    -fx-font-size: 18px;
 }

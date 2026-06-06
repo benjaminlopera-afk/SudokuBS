@@ -3,25 +3,26 @@ package com.example.sudokubs.Model.datastructures;
 import java.util.NoSuchElementException;
 
 /**
- * Implementation of a double-ended queue (Deque) using a doubly linked list.
- * This class allows adding and removing elements from both the front and the back of the queue.
+ * Implementación de una cola de doble extremo (Deque) usando una lista doblemente enlazada.
+ * Permite agregar y eliminar elementos tanto por el frente como por el final.
  *
- * @param <T> the type of elements in this deque
+ * @param <T> el tipo de elementos en esta deque
  */
 public class Dequeue<T> implements IDequeue<T> {
-    private Node<T> head;  // Points to the first element in the deque
-    private Node<T> tail;  // Points to the last element in the deque
-    private int size;      // Tracks the number of elements in the deque
+
+    private Node<T> head;
+    private Node<T> tail;
+    private int size;
 
     /**
-     * Inner class representing a node in the doubly linked list.
+     * Clase interna que representa un nodo de la lista doblemente enlazada.
      *
-     * @param <T> the type of data stored in the node
+     * @param <T> el tipo de dato almacenado en el nodo
      */
     private static class Node<T> {
-        T data;       // The data stored in the node
-        Node<T> next; // Pointer to the next node
-        Node<T> prev; // Pointer to the previous node
+        T data;
+        Node<T> next;
+        Node<T> prev;
 
         Node(T data) {
             this.data = data;
@@ -31,9 +32,9 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Adds an element to the front of the deque.
+     * Agrega un elemento al frente de la deque.
      *
-     * @param elem the element to be added to the front
+     * @param elem el elemento a agregar
      */
     @Override
     public void addFirst(final T elem) {
@@ -50,9 +51,9 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Adds an element to the back of the deque.
+     * Agrega un elemento al final de la deque.
      *
-     * @param elem the element to be added to the back
+     * @param elem el elemento a agregar
      */
     @Override
     public void addLast(final T elem) {
@@ -69,10 +70,10 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Returns the first element in the deque.
+     * Retorna el primer elemento de la deque.
      *
-     * @return the first element
-     * @throws NoSuchElementException if the deque is empty
+     * @return el primer elemento
+     * @throws NoSuchElementException si la deque está vacía
      */
     @Override
     public T getFirst() {
@@ -83,10 +84,10 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Returns the last element in the deque.
+     * Retorna el último elemento de la deque.
      *
-     * @return the last element
-     * @throws NoSuchElementException if the deque is empty
+     * @return el último elemento
+     * @throws NoSuchElementException si la deque está vacía
      */
     @Override
     public T getLast() {
@@ -97,9 +98,9 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Removes the first element from the deque.
+     * Elimina el primer elemento de la deque.
      *
-     * @throws NoSuchElementException if the deque is empty
+     * @throws NoSuchElementException si la deque está vacía
      */
     @Override
     public void removeFirst() {
@@ -110,15 +111,15 @@ public class Dequeue<T> implements IDequeue<T> {
         if (head != null) {
             head.prev = null;
         } else {
-            tail = null; // If head becomes null, tail should also be null
+            tail = null;
         }
         size--;
     }
 
     /**
-     * Removes the last element from the deque.
+     * Elimina el último elemento de la deque.
      *
-     * @throws NoSuchElementException if the deque is empty
+     * @throws NoSuchElementException si la deque está vacía
      */
     @Override
     public void removeLast() {
@@ -129,16 +130,16 @@ public class Dequeue<T> implements IDequeue<T> {
         if (tail != null) {
             tail.next = null;
         } else {
-            head = null; // If tail becomes null, head should also be null
+            head = null;
         }
         size--;
     }
 
     /**
-     * Checks if the deque contains a specific element.
+     * Verifica si la deque contiene el elemento especificado.
      *
-     * @param elem the element to check for
-     * @return true if the deque contains the element, false otherwise
+     * @param elem el elemento a buscar
+     * @return {@code true} si la deque contiene el elemento, {@code false} en caso contrario
      */
     @Override
     public Boolean contains(final T elem) {
@@ -153,9 +154,9 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Checks if the deque is empty.
+     * Verifica si la deque está vacía.
      *
-     * @return true if the deque is empty, false otherwise
+     * @return {@code true} si la deque no contiene elementos, {@code false} en caso contrario
      */
     @Override
     public Boolean isEmpty() {
@@ -163,9 +164,9 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Returns the number of elements in the deque.
+     * Retorna el número de elementos en la deque.
      *
-     * @return the size of the deque
+     * @return el tamaño de la deque
      */
     @Override
     public Integer size() {
@@ -173,9 +174,9 @@ public class Dequeue<T> implements IDequeue<T> {
     }
 
     /**
-     * Creates a deep copy of the deque.
+     * Crea una copia profunda de la deque.
      *
-     * @return a new deque that is a deep copy of the current one
+     * @return una nueva deque que es copia profunda de la actual
      */
     @Override
     public IDequeue<T> deepCopy() {
@@ -188,6 +189,13 @@ public class Dequeue<T> implements IDequeue<T> {
         return copy;
     }
 
+    /**
+     * Retorna el elemento en la posición indicada.
+     *
+     * @param index posición del elemento (basado en 0)
+     * @return el elemento en la posición indicada
+     * @throws IndexOutOfBoundsException si el índice está fuera de rango
+     */
     @Override
     public T get(int index) {
         if (index < 0 || index >= size) {
@@ -200,6 +208,13 @@ public class Dequeue<T> implements IDequeue<T> {
         return current.data;
     }
 
+    /**
+     * Reemplaza el elemento en la posición indicada con el valor dado.
+     *
+     * @param index posición del elemento a reemplazar (basado en 0)
+     * @param value nuevo valor a establecer
+     * @throws IndexOutOfBoundsException si el índice está fuera de rango
+     */
     @Override
     public void set(int index, T value) {
         if (index < 0 || index >= size) {

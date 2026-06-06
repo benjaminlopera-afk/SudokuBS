@@ -58,4 +58,5 @@ public class SudokuBoardValidator implements SudokuValidator {
         }
         return true;
     }
+
 }

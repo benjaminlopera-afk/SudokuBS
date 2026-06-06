@@ -17,6 +17,8 @@ public class SudokuController {
 
     private final SudokuBoard board = new SudokuBoard();
 
+    private TextField celdaHint = null;
+
     private final SudokuBoardValidator validator = new SudokuBoardValidator(board);
 
     @FXML
@@ -119,7 +121,28 @@ public class SudokuController {
 
     @FXML
     private void handleAyuda() {
-        lblMensaje.setText("");
-        // TODO: HU-5 lógica de ayuda
+        // Limpiar sugerencia anterior
+        if (celdaHint != null) {
+            celdaHint.getStyleClass().remove("celda-hint");
+            celdaHint = null;
+        }
+
+        int[] hint = board.getHint(validator);
+
+        if (hint == null) {
+            lblMensaje.setText("No hay sugerencias disponibles.");
+            return;
+        }
+
+        int row = hint[0];
+        int col = hint[1];
+        int value = hint[2];
+
+        // Primero asignar, después usar
+        celdaHint = celdas[row][col];
+        celdaHint.setText(String.valueOf(value));
+        celdaHint.getStyleClass().add("celda-hint");
+        lblMensaje.setText("Sugerencia aplicada. ¡Puedes modificarla!");
     }
+
 }

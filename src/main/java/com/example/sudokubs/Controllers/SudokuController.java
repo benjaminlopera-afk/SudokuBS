@@ -1,6 +1,7 @@
 package com.example.sudokubs.Controllers;
 
 import com.example.sudokubs.Model.SudokuBoard;
+import com.example.sudokubs.Model.SudokuBoardValidator;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -15,6 +16,8 @@ public class SudokuController {
     private final TextField[][] celdas = new TextField[6][6];
 
     private final SudokuBoard board = new SudokuBoard();
+
+    private final SudokuBoardValidator validator = new SudokuBoardValidator(board);
 
     @FXML
     public void initialize() {
@@ -40,6 +43,29 @@ public class SudokuController {
                 }));
 
                 celda.setStyle(getCellBorderStyle(row, col));
+
+                final int r = row, c = col;
+                celda.textProperty().addListener((observable, oldValue, newValue) -> {
+                    if (!newValue.isEmpty()) {
+                        int value = Integer.parseInt(newValue);
+                        board.setValue(r, c, value);
+                        if (!validator.isValidMove(r, c, value)) {
+                            celda.getStyleClass().removeAll("celda-error");
+                            celda.getStyleClass().add("celda-error");
+                            lblMensaje.setText("Número inválido en fila, columna o bloque.");
+                        } else {
+                            celda.getStyleClass().remove("celda-error");
+                            lblMensaje.setText("");
+                            if (validator.isBoardComplete()) {
+                                lblMensaje.setText("¡Felicidades! ¡Completaste el Sudoku!");
+                            }
+                        }
+                    } else {
+                        board.setValue(r, c, 0);
+                        celda.getStyleClass().remove("celda-error");
+                        lblMensaje.setText("");
+                    }
+                });
 
                 celdas[row][col] = celda;
                 sudokuGrid.add(celda, col, row);

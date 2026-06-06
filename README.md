@@ -1,88 +1,68 @@
-# \# Sudoku 6x6
+# Sudoku 6x6
 
-# 
+Juego de Sudoku desarrollado en Java con JavaFX como proyecto universitario para el curso de Fundamentos de Programación Orientada a Eventos - Universidad del Valle 2026-1.
 
-# \## Descripción
+---
 
-# Juego de Sudoku en una cuadrícula de 6x6 donde el objetivo es completar el tablero con números del 1 al 6, sin repetir en cada fila, columna y bloque de 2x3.
+## Descripción
 
-# 
+El objetivo del juego es completar una cuadrícula de 6x6 con números del 1 al 6, sin repetir en cada fila, columna y bloque de 2x3.
 
-# \## Tecnologías
+---
 
-# \- Java 21
+## Tecnologías
 
-# \- JavaFX 21
+| Herramienta | Versión |
+|---|---|
+| Java | 21 |
+| JavaFX | 21 |
+| Scene Builder | - |
+| IntelliJ IDEA | - |
+| Git / GitHub | - |
 
-# \- Scene Builder
+---
 
-# \- IntelliJ IDEA
+## Funcionalidades
 
-# \- Git / GitHub
+- Generación automática de tableros válidos
+- Validación en tiempo real de los números ingresados
+- Resaltado de celdas con errores
+- Opción de ayuda con sugerencias válidas
+- Detección automática de tablero completo
 
-# 
+---
 
-# \## Funcionalidades
+## Estructura del proyecto
 
-# \- Generación automática de tableros válidos
+~~~
+src/main/java/com/example/sudokubs/
+├── Applications/
+│   └── SudokuApplication.java
+├── Controllers/
+│   ├── StartController.java
+│   └── SudokuController.java
+├── Model/
+│   ├── datastructures/
+│   │   ├── IDequeue.java
+│   │   └── Dequeue.java
+│   ├── SudokuBoard.java
+│   ├── SudokuBoardValidator.java
+│   └── SudokuValidator.java
+└── Utils/
+    └── Paths.java
+~~~
 
-# \- Validación en tiempo real de los números ingresados
+---
 
-# \- Resaltado de celdas con errores
+## Cómo ejecutar
 
-# \- Opción de ayuda con sugerencias válidas
+1. Clona el repositorio
+2. Abre el proyecto en IntelliJ IDEA
+3. Ejecuta la clase `Launcher.java`
 
-# \- Detección automática de tablero completo
+---
 
-# 
+## Autores
 
-# \## Estructura del proyecto
-
-# src/main/java/com/example/sudokubs/
-
-# ├── Applications/
-
-# │   └── SudokuApplication.java
-
-# ├── Controllers/
-
-# │   ├── StartController.java
-
-# │   └── SudokuController.java
-
-# ├── Model/
-
-# │   ├── datastructures/
-
-# │   │   ├── IDequeue.java
-
-# │   │   └── Dequeue.java
-
-# │   ├── SudokuBoard.java
-
-# │   ├── SudokuBoardValidator.java
-
-# │   └── SudokuValidator.java
-
-# └── Utils/
-
-# └── Paths.java
-
-# 
-
-# \## Cómo ejecutar
-
-# 1\. Clona el repositorio
-
-# 2\. Abre el proyecto en IntelliJ IDEA
-
-# 3\. Ejecuta la clase `Launcher.java`
-
-# 
-
-# \## Autores
-
-# \- Benjamín Lopera - 2515144
-
-# \- Sebastián Martínez - 2519817
-
+- **Benjamín Lopera** - 2515144
+- **Sebastián Martínez** - 2519817
